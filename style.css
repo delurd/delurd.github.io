@@ -29,6 +29,7 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     background-size: 70vh;
+    transition: 0.5s;
     /* background-color: aliceblue; */
 }
 .center #imgProfile{
@@ -48,6 +49,7 @@ body{
     height: 240px;
     padding-bottom: 10px;
     z-index: 5;
+    transition: 0.3s;
 }
 #imgProfileBg{
     z-index: 7;
@@ -103,4 +105,38 @@ body{
     width: 200px;
     background-color: #e4e4e4;
     z-index: 20;
+}
+
+@media screen and (max-width: 600px) {
+    .center #imgProfile{
+        position: relative;
+    }
+    #imgProfileBg{
+        top: 40px;
+        left: 0px;
+    }
+    .center > div{
+        position: relative;
+        width: auto;
+    }
+    .center h1{
+        position: relative;
+        top: -20px;
+        left: 0px;
+    }
+    .center .about{
+        width: 190px;
+        position: relative;
+        bottom: 0px;
+        top: 30px;
+        right: 0px;
+    }
+    .hero .center{
+        background-image: none;
+    }
+    .center > div{
+        top: -100px;
+        background-color: #ECC45D;
+    }
+    
 }
