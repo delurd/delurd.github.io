@@ -1,0 +1,41 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.menu-btn {
+  position: relative;
+  padding: 20px;
+  cursor: pointer;
+  -webkit-transform: skewY(-35deg);
+          transform: skewY(-35deg);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  -webkit-transition-timing-function: ease-out;
+          transition-timing-function: ease-out;
+}
+
+.menu-btn div {
+  background-color: #ECC45D;
+  width: 20px;
+  height: 5px;
+  margin-bottom: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.menu-btn:hover {
+  background-color: #ECC45D;
+  -webkit-transform: skewY(0deg);
+          transform: skewY(0deg);
+}
+
+.menu-btn:hover div {
+  background-color: white;
+}
+
+.menu-cliked {
+  -webkit-transform: skewY(0deg);
+          transform: skewY(0deg);
+}
+/*# sourceMappingURL=main.css.map */

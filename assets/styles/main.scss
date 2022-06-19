@@ -1,0 +1,38 @@
+$accentColor : #ECC45D;
+$secondAccent : #e4e4e4;
+$thirdAccent: #C4C4C4;
+
+
+* {
+    box-sizing: border-box;
+}
+
+.menu-btn {
+    position: relative;
+    padding: 20px;
+    cursor: pointer;
+    transform: skewY(-35deg);
+    transition: 0.5s;
+    transition-timing-function: ease-out;
+
+    div {
+        background-color: $accentColor;
+        width: 20px;
+        height: 5px;
+        margin-bottom: 5px;
+        transition: 0.5s;
+    }
+}
+
+.menu-btn:hover {
+    background-color: $accentColor;
+    transform: skewY(0deg);
+
+    div {
+        background-color: white;
+    }
+}
+
+.menu-cliked{
+    transform: skewY(0deg);
+}
