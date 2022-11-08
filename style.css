@@ -1,38 +1,64 @@
-*{
+* {
     box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-body{
+
+body {
     margin: 0;
+    background-image: url('assets/images/LogoFLursBg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70vh;
+    background-attachment: fixed;
+    transition: 0.5s;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
 }
-.hero{
+
+.hero {
     height: 100vh;
     width: 100%;
     overflow: hidden;
 }
-.hero .center{
+
+/* .hero::before {
+    content: '';
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    opacity: 1;
     background-image: url('assets/images/LogoFLursBg.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 70vh;
     transition: 0.5s;
+} */
+
+.hero .center {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
     /* background-color: aliceblue; */
 }
-.center #imgProfile{
+
+.center #imgProfile {
     position: absolute;
     top: 10px;
     height: 220px;
     width: auto;
     z-index: 8;
-    transition: 0.1s;
-    transition-timing-function: ease;
+    transition: 0.3s;
+    transition-timing-function: ease-out;
 }
 
-.center > div{
+.center>div {
     position: relative;
     top: -50px;
     /* background-color: #ECC45D; */
@@ -42,14 +68,16 @@ body{
     z-index: 5;
     transition: 0.3s;
 }
-#imgProfileBg{
+
+#imgProfileBg {
     z-index: 7;
     position: absolute;
     top: -30px;
-    transition: 0.1s;
-    transition-timing-function: ease;
+    transition: 0.3s;
+    transition-timing-function: ease-out;
 }
-.center h1{
+
+.center h1 {
     position: absolute;
     z-index: 10;
     top: 35px;
@@ -57,22 +85,23 @@ body{
     font-size: 70px;
     margin: 0;
     font-weight: bold;
-    transition: 0.1s;
-    transition-timing-function: ease;
+    transition: 0.3s;
+    transition-timing-function: ease-out;
     /* filter: invert(); */
 }
-.center .about{
+
+.center .about {
     width: 190px;
     position: absolute;
     z-index: 9;
     bottom: -40px;
     right: -210px;
     font-size: 14px;
-    transition: 0.1s;
-    transition-timing-function: ease;
+    transition: 0.3s;
+    transition-timing-function: ease-out;
 }
 
-#logoBg{
+#logoBg {
     width: 100%;
     z-index: 2;
     position: absolute;
@@ -83,19 +112,20 @@ body{
     transition: 0.3s;
 }
 
-#logoBg img{
+#logoBg img {
     width: 700px;
 }
 
 
-.app-bar{
-    position: absolute;
+.app-bar {
+    position: fixed;
     top: 30px;
     right: 30px;
     z-index: 21;
     padding: 20px 20px;
 }
-.side-bar{
+
+.side-bar {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -106,35 +136,44 @@ body{
 }
 
 @media screen and (max-width: 600px) {
-    .center #imgProfile{
+    body{
+        background-image: none
+    }
+    .center #imgProfile {
         position: relative;
     }
-    #imgProfileBg{
+
+    #imgProfileBg {
         top: 40px;
         left: 0px;
     }
-    .center > div{
+
+    .center>div {
         position: relative;
         width: auto;
     }
-    .center h1{
+
+    .center h1 {
         position: relative;
         top: -20px;
         left: 0px;
     }
-    .center .about{
+
+    .center .about {
         width: 190px;
         position: relative;
         bottom: 0px;
         top: 30px;
         right: 0px;
     }
-    .hero .center{
+
+    .hero .center {
         background-image: none;
     }
-    .center > div{
+
+    .center>div {
         top: -100px;
         background-color: #ECC45D;
     }
-    
+
 }
