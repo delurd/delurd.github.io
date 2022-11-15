@@ -103,6 +103,7 @@ body {
             transition: 0.3s;
             transition-timing-function: ease-out;
             word-wrap: break-word;
+            width: 70%;
         }
 
         h1::before {
@@ -253,6 +254,14 @@ body {
         height: 100%;
     }
 
+}
+
+.cc{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 10vh;
+    padding: 30px;
 }
 
 .cursor-circle {

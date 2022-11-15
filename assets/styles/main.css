@@ -99,6 +99,7 @@ body {
   -webkit-transition-timing-function: ease-out;
           transition-timing-function: ease-out;
   word-wrap: break-word;
+  width: 70%;
 }
 
 .portfolio .top h1::before {
@@ -241,6 +242,20 @@ body {
   content: '';
   padding: 0 15%;
   height: 100%;
+}
+
+.cc {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  height: 10vh;
+  padding: 30px;
 }
 
 .cursor-circle {
