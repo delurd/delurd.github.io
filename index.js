@@ -8,8 +8,14 @@ const arrowLink = document.querySelector('.side-bar .arrow');
 const imagePortfolio = document.querySelector('.image-box img');
 const mouseMoveObject = document.querySelectorAll('.mouse-move');
 
+// imagePortfolio.addEventListener('click', () => {
+//   console.log('hello');
+// });
 
-imagePortfolio.addEventListener('click',()=>{console.log('hello');})
+// window.scrollTo({
+//   top: 0,
+//   behavior: 'smooth',
+// });
 
 window.addEventListener('mousemove', async (e) => {
   const offX = e.screenX - window.innerWidth / 2;
@@ -43,13 +49,14 @@ function arrowScrollEffect() {
 
 arrowScrollEffect();
 
-// Background onScroll
+//BODY ON SCROLL
 const body = document.querySelector('body');
 const bodyStyle = window.getComputedStyle(body);
 body.style.backgroundSize = `${bodyStyle.backgroundSize}`;
 if (window.scrollY > window.innerHeight) {
   body.style.backgroundSize = `${bodyStyle.backgroundSize}`;
   hero.style.opacity = 0;
+  console.log('hello');
 }
 
 const arrBgSize = body.style.backgroundSize.split('p');
@@ -100,7 +107,7 @@ function arrowScrollEffect() {
   }
 }
 
-// Scroll Follow
+// SCROLL FOLLOW
 const object = document.querySelectorAll('.scrl-obj');
 
 window.addEventListener('scroll', scrollEffect);
@@ -133,13 +140,30 @@ function scrollEffect() {
 
 //GSAP DRAGABLE
 const slideBox = document.querySelector('.content');
+const conntentStyle = window.getComputedStyle(slideBox);
+
+const sliderIndicatorPortfolio = document.querySelector(
+  '.portfolio-indicator-active'
+);
+function indicatorPortfolio() {
+  const translateX = conntentStyle.transform.split(',')[4];
+  let olahX = -translateX;
+  olahX < 0 && (olahX = 0);
+  olahX > 1900 && (olahX = 1900);
+
+  let normalizeX = (olahX - 0) / (1900 - 0);
+
+  sliderIndicatorPortfolio.style.width = `${normalizeX * 100 + 5}%`;
+}
 
 function dragg() {
   Draggable.create('.content', {
     type: 'x',
     // bounds: ".container",
     edgeResistance: 0.95,
-    // ondrag : lapposeh(),
+    onDrag: function (e) {
+      indicatorPortfolio();
+    },
     bounds: {
       left: -slideBox.scrollWidth + window.innerWidth,
       width: slideBox.scrollWidth,

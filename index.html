@@ -12,6 +12,10 @@
 </head>
 
 <body>
+  <!-- <div
+    id="bg-image"
+    style="background-color: antiquewhite; position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 0; opacity: 0.4;">
+  </div> -->
   <header>
     <!-- <div class="app-bar">
       <div class="menu-btn" data-toggle="true">
@@ -22,12 +26,12 @@
     </div> -->
     <div class="side-bar">
       <a class="arrow">
-        <img  src="assets/images/arrow-down.png" alt="" id="arrow"/>
+        <img src="assets/images/arrow-down.png" alt="" id="arrow" />
       </a>
     </div>
   </header>
-  <main>
-    <section class="hero" id="rumah">
+  <main style="position: relative;">
+    <section class="hero" id="home">
       <div class="center">
         <div>
           <h1 class="hello">
@@ -91,6 +95,9 @@
           </div>
         </div>
       </div>
+      <div class="portfolio-indicator">
+        <div class="portfolio-indicator-active"></div>
+      </div>
     </section>
     <section>
       <div class="cc">
@@ -102,6 +109,8 @@
     <div class="cursor-circle">Drag</div>
 
   </main>
+  <script src="onLoad.js"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/Draggable.min.js"></script>
   <script src="index.js"></script>
