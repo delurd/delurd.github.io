@@ -3,42 +3,102 @@ const img = document.querySelector('.hero #imgProfile');
 const profileBg = document.querySelector('#imgProfileBg');
 const hOne = document.querySelector('.hero h1');
 const about = document.querySelector('.hero .about');
-
+const arrow = document.querySelector('.side-bar .arrow img');
+const arrowLink = document.querySelector('.side-bar .arrow');
+const imagePortfolio = document.querySelector('.image-box img');
 const mouseMoveObject = document.querySelectorAll('.mouse-move');
 
-window.addEventListener('mousemove', async (e) => {
 
+imagePortfolio.addEventListener('click',()=>{console.log('hello');})
+
+window.addEventListener('mousemove', async (e) => {
   const offX = e.screenX - window.innerWidth / 2;
   const offY = e.screenY - window.innerHeight / 2;
   img.style.transform = `translate(${-offX / 50}px,${-offY / 50}px`;
   profileBg.style.transform = `translate(${-offX / 35}px,${-offY / 35}px`;
   hOne.style.transform = `translate(${-offX / 15}px,${-offY / 15}px`;
   about.style.transform = `translate(${-offX / 35}px,${-offY / 10}px`;
-
-
 });
 
+function arrowScrollEffect() {
+  if (window.scrollY > window.innerHeight / 2) {
+    arrow.style.rotate = '180deg';
+    arrow.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    });
+  } else {
+    arrow.style.rotate = '0deg';
+    // arrowLink.setAttribute('href', '#Portfolio');
+    arrow.addEventListener('click', () => {
+      window.scrollTo({
+        top: window.innerHeight,
+        behavior: 'smooth',
+      });
+    });
+  }
+}
+
+arrowScrollEffect();
 
 // Background onScroll
-
 const body = document.querySelector('body');
 const bodyStyle = window.getComputedStyle(body);
 body.style.backgroundSize = `${bodyStyle.backgroundSize}`;
 if (window.scrollY > window.innerHeight) {
   body.style.backgroundSize = `${bodyStyle.backgroundSize}`;
+  hero.style.opacity = 0;
 }
-const arrBgSize = body.style.backgroundSize.split('p');
 
+const arrBgSize = body.style.backgroundSize.split('p');
 
 window.addEventListener('scroll', () => {
   const scrollValue = window.scrollY;
-  let bgSize = (parseFloat(arrBgSize[0]) - scrollValue * 2);
+  let bgSize = parseFloat(arrBgSize[0]) - scrollValue * 2;
 
   body.style.backgroundSize = `${bgSize < 0 ? 0 : bgSize}px`;
 
-})
+  if (window.scrollY >= 300 && window.scrollY <= window.innerHeight) {
+    const opacity = (window.scrollY - 300) / (window.innerHeight - 300);
+    let _minOpacity = opacity * 5;
+    // if(_minOpacity < 0.2){
+    //   _minOpacity = 0
+    // }
+    hero.style.opacity = 1 - _minOpacity;
+    hero.style.scale = 1 - opacity;
 
+    // console.log(opacity);
+    // console.log(window.innerHeight);
+  }
+  if (window.scrollY < 300) {
+    hero.style.opacity = 1;
+  }
 
+  arrowScrollEffect();
+});
+
+function arrowScrollEffect() {
+  if (window.scrollY > window.innerHeight / 2) {
+    arrow.style.rotate = '180deg';
+    arrow.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    });
+  } else {
+    arrow.style.rotate = '0deg';
+    // arrowLink.setAttribute('href', '#Portfolio');
+    arrow.addEventListener('click', () => {
+      window.scrollTo({
+        top: window.innerHeight,
+        behavior: 'smooth',
+      });
+    });
+  }
+}
 
 // Scroll Follow
 const object = document.querySelectorAll('.scrl-obj');
@@ -46,42 +106,55 @@ const object = document.querySelectorAll('.scrl-obj');
 window.addEventListener('scroll', scrollEffect);
 
 function scrollEffect() {
-  object.forEach(object => {
-    let dataScroll = object.getAttribute('data-scrl-spd')
-    let dataX = object.getAttribute('data-x')
-    let dataY = object.getAttribute('data-y')
+  object.forEach((object) => {
+    let dataScroll = object.getAttribute('data-scrl-spd');
+    let dataX = object.getAttribute('data-x');
+    let dataY = object.getAttribute('data-y');
 
-    if (dataScroll == null) { dataScroll = 3.5 }
-    if (dataX == null) { dataX = 0 }
-    if (dataY == null) { dataY = 0 }
+    if (dataScroll == null) {
+      dataScroll = 3.5;
+    }
+    if (dataX == null) {
+      dataX = 0;
+    }
+    if (dataY == null) {
+      dataY = 0;
+    }
 
-    object.style.transform = `translate(${dataX}px, ${(-((window.scrollY + Math.floor(window.innerHeight / 2)) - (object.offsetTop + object.scrollHeight / 2)) / dataScroll)}px)`;
-  })
-
+    object.style.transform = `translate(${dataX}px, ${
+      -(
+        window.scrollY +
+        Math.floor(window.innerHeight / 2) -
+        (object.offsetTop + object.scrollHeight / 2)
+      ) / dataScroll
+    }px)`;
+  });
 }
 
 //GSAP DRAGABLE
 const slideBox = document.querySelector('.content');
 
 function dragg() {
-  Draggable.create(".content", {
-    type: "x",
+  Draggable.create('.content', {
+    type: 'x',
     // bounds: ".container",
     edgeResistance: 0.95,
     // ondrag : lapposeh(),
-    bounds: { left: -slideBox.scrollWidth + window.innerWidth, width: (slideBox.scrollWidth) },
+    bounds: {
+      left: -slideBox.scrollWidth + window.innerWidth,
+      width: slideBox.scrollWidth,
+    },
   });
 }
 
-dragg()
-window.addEventListener('resize', () => { dragg() });
+dragg();
+window.addEventListener('resize', () => {
+  dragg();
+});
 
-
-
-// CURSOR CUSTOM DRAG 
+// CURSOR CUSTOM DRAG
 const area = document.querySelector('.content');
 const cursorCircle = document.querySelector('.cursor-circle');
-
 
 let boxWidth = area.scrollWidth;
 let boxHeight = area.scrollHeight;
@@ -94,8 +167,9 @@ window.addEventListener('mousemove', function (e) {
 
   const centerCursor = cursorCircle.scrollWidth / 2;
 
-  cursorCircle.style.transform = `translate(${offX - centerCursor}px,${offY - centerCursor
-    }px`;
+  cursorCircle.style.transform = `translate(${offX - centerCursor}px,${
+    offY - centerCursor
+  }px`;
   cursorCircle.style.opacity = '1';
 
   if (
@@ -109,9 +183,6 @@ window.addEventListener('mousemove', function (e) {
     cursorCircle.style.opacity = '0';
   }
 });
-
-
-
 
 //MENU BUTTON
 
@@ -141,5 +212,3 @@ window.addEventListener('mousemove', function (e) {
 //     menu.classList.remove('menu-cliked');
 //   }
 // });
-
-
