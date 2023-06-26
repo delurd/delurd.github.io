@@ -40,7 +40,7 @@ body {
     // width: 100px;
     padding: 40px;
     // background-color: #e4e4e4;
-    z-index: 20;
+    z-index: 2000;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -130,7 +130,7 @@ body {
 .portfolio {
     height: 100vh;
     // background-color: #56A4D2;
-    background-image: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,1) 20% 90%,rgba(255,255,255,0) 100%);
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 20% 90%, rgba(255, 255, 255, 0) 100%);
     overflow: hidden;
 
 
@@ -214,7 +214,7 @@ body {
                 height: 100%;
                 width: 100%;
                 transition: 0.3s;
-
+                cursor: pointer;
             }
 
             img {
@@ -348,8 +348,100 @@ body {
     pointer-events: none; //For not distrubing
     top: 40px;
     left: 40px;
-    z-index: 0;
+    z-index: 2000;
     opacity: 0;
+}
+
+
+#detailPortfolio {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: white;
+    display: flex;
+    padding-top: 8%;
+    padding-right: 10%;
+    padding-left: 10%;
+
+    .body-portfolio {
+        background-color: #F4F4F4;
+        width: 100%;
+        padding: 88px;
+        padding-bottom: 20px;
+        overflow: auto;
+    }
+
+    .content-portfolio {
+        display: flex;
+
+        .col-left {
+            width: 65%;
+            // height: 600px;
+            // height: 50vh;
+            // background-color: antiquewhite;
+            overflow: hidden;
+
+            .img-box {
+                width: 100%;
+                height: auto;
+                // background-color: #30C296;
+                overflow: hidden;
+                margin-bottom: 20px;
+
+                img {
+                    width: 100%;
+                    height: 50vh;
+                    object-fit: cover;
+                }
+            }
+
+            .spec {
+                display: flex;
+                justify-content: space-between;
+
+                p {
+                    // font-size: 14px;
+                }
+            }
+        }
+
+        .col-right {
+            display: flex;
+            width: 25%;
+            flex-direction: column;
+            justify-content: space-between;
+            // background-color: #56A4D2;
+
+            h1 {
+                font-size: 36px;
+                margin: 0;
+            }
+
+            a {
+                text-decoration: none;
+                transition: 0.3s;
+                color: black;
+            }
+
+            a:hover {
+                // color: $grenColor;
+                padding: 10px 15px;
+                background-color: $accentColor;
+                // margin-left: 10px;
+            }
+
+            .arrow {
+                display: inline-block;
+                transform: rotate(-40deg);
+            }
+        }
+
+        .spacer {
+            width: 10%;
+        }
+    }
 }
 
 
@@ -366,4 +458,45 @@ body {
     .content .box {
         // scale: 0.3;
     }
+
+
+}
+
+
+@media screen and (max-width: 990px) {
+    #detailPortfolio {
+        .body-portfolio {
+            padding: 40px;
+            padding-bottom: 0px;
+            // background-color: #ECC45D;
+
+        }
+
+        .content-portfolio {
+            flex-direction: column;
+            width: 100%;
+            // background-color: #C4C4C4;
+
+            .col-left {
+                width: 100%;
+                // background-color: #56A4D2;
+
+                .spec {
+                    flex-direction: column;
+                    margin-bottom: 20px;
+
+                    p {
+                        margin: 5px;
+                    }
+                }
+            }
+
+            .col-right {
+                width: 100%;
+                // background-color: #56A4D2;
+            }
+        }
+    }
+
+
 }

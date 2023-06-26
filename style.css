@@ -1,6 +1,8 @@
 * {
     box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* font-family: 'Graphik', Arial, Helvetica, sans-serif; */
+        /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
 }
 
 body {
@@ -128,9 +130,10 @@ body {
 
 
 @media screen and (max-width: 600px) {
-    body{
+    body {
         background-image: none
     }
+
     .center #imgProfile {
         position: relative;
     }

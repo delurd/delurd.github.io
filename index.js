@@ -5,26 +5,48 @@ const hOne = document.querySelector('.hero h1');
 const about = document.querySelector('.hero .about');
 const arrow = document.querySelector('.side-bar .arrow img');
 const arrowLink = document.querySelector('.side-bar .arrow');
-const imagePortfolio = document.querySelector('.image-box img');
+const imagePortfolio = document.querySelectorAll('.image-box');
 const mouseMoveObject = document.querySelectorAll('.mouse-move');
+const mainElement = document.querySelector('main');
+const contentPortfolio = document.querySelector('.portfolio .content');
 
-// imagePortfolio.addEventListener('click', () => {
-//   console.log('hello');
-// });
+let isArrowScrollEnable = true;
+// const body1 = document.querySelector('body');
 
 // window.scrollTo({
 //   top: 0,
 //   behavior: 'smooth',
 // });
 
-window.addEventListener('mousemove', async (e) => {
-  const offX = e.screenX - window.innerWidth / 2;
-  const offY = e.screenY - window.innerHeight / 2;
-  img.style.transform = `translate(${-offX / 50}px,${-offY / 50}px`;
-  profileBg.style.transform = `translate(${-offX / 35}px,${-offY / 35}px`;
-  hOne.style.transform = `translate(${-offX / 15}px,${-offY / 15}px`;
-  about.style.transform = `translate(${-offX / 35}px,${-offY / 10}px`;
-});
+const dataPortfolio = {
+  Torestoe: {
+    title: 'Torestoe - Restaurant Catalogue',
+    desc: 'A restaurant catalogue website that implement PWA',
+    image: './assets/images/port/Torestoe.jpg',
+    link: 'https://github.com/delurd/CatatanKeuanganApps/releases/download/v1.0.0/CatatanKeuangan-v1.0.0.apk',
+    type: 'Website',
+    techStack: 'HTML / CSS / Javascript',
+    role: 'UI / Front-End',
+  },
+  Moneytory: {
+    title: 'Moneytory',
+    desc: 'An application that is used to record financial income and expenses, easier and a substitute for a big book',
+    image: './assets/images/port/Moneytory.jpg',
+    link: 'https://github.com/delurd/CatatanKeuanganApps/releases/download/v1.0.0/CatatanKeuangan-v1.0.0.apk',
+    type: 'Android App',
+    techStack: 'React Native',
+    role: 'Full Stack',
+  },
+  Midpoint: {
+    title: 'Midpoint Project',
+    desc: 'Landing page for Midpoint photography and videography services',
+    image: './assets/images/port/Midpoint.jpg',
+    link: 'https://delurd.github.io/midpoint',
+    type: 'Website',
+    techStack: 'HTML / CSS / Javascript',
+    role: 'UI / Front-End',
+  },
+};
 
 function arrowScrollEffect() {
   if (window.scrollY > window.innerHeight / 2) {
@@ -46,8 +68,102 @@ function arrowScrollEffect() {
     });
   }
 }
-
 arrowScrollEffect();
+
+function arrowEvent(functionClick) {
+  arrow.addEventListener('click', functionClick);
+  // arrow.addEventListener('click', () => {
+  //   console.log('yolo');
+  // });
+  // if (!isArrowScrollEnable) {
+  //   console.log('hello');
+  //   arrow.removeEventListener('click', () => {
+  //     console.log('yolo');
+  //   });
+
+  //   arrow.removeEventListener('click', functionClick);
+  // }
+}
+
+function arrowRemoveClickEvent(functionClick) {
+  arrow.removeEventListener('click', functionClick);
+}
+
+//DETAIL PORTFOLIO
+// imagePortfolio.forEach((selector) => {
+//   selector.addEventListener('click', () => {
+//     const dataSelect = selector.getAttribute('id');
+//     body.style.overflow = 'hidden';
+//     contentPortfolio.style.display = 'none';
+//     arrow.style.rotate = '90deg';
+
+//     const bodyDetailPortfolio = document.createElement('div');
+//     bodyDetailPortfolio.setAttribute('id', 'detailPortfolio');
+//     bodyDetailPortfolio.innerHTML = `<div class="body-portfolio">
+//     <div class="content-portfolio">
+//       <div class="col-left">
+//         <div class="img-box">
+//           <img src=${dataPortfolio[dataSelect].image}>
+//         </div>
+//         <div class="spec">
+//           <p>${dataPortfolio[dataSelect].type}</p>
+//           <p>${dataPortfolio[dataSelect].techStack}</p>
+//           <p>${dataPortfolio[dataSelect].role}</p>
+//         </div>
+//       </div>
+//       <div class="spacer"></div>
+//       <div class="col-right">
+//         <div>
+//           <h1>${dataPortfolio[dataSelect].title}
+//           </h1>
+//           <br>
+//           <br>
+//           <p>${dataPortfolio[dataSelect].desc}</p>
+//         </div>
+//         <p>
+//           <a href=${dataPortfolio[dataSelect].link} target="_blank">See demo <span class="arrow">➔</span></a>
+//         </p>
+//       </div>
+//     </div>
+//   </div>`;
+//     mainElement.append(bodyDetailPortfolio);
+
+//     const bodyPorto = document.querySelector('#detailPortfolio');
+//     function onClickArrow() {
+//       contentPortfolio.style.display = 'flex';
+//       console.log('contentPortfolio.style.display');
+//       // dragg();
+//       bodyPorto.remove();
+//       arrow.style.rotate = '180deg';
+//       // console.log(contentPortfolio);
+//       window.scrollTo({
+//         top: window.innerHeight,
+//         behavior: 'smooth',
+//       });
+//       arrowEvent(() => {
+//         window.scrollTo({
+//           top: 0,
+//           behavior: 'smooth',
+//         });
+//       });
+//       isArrowScrollEnable = true;
+//       body.style.overflow = 'auto';
+//     }
+//     arrowEvent(onClickArrow);
+
+//     isArrowScrollEnable = false;
+//   });
+// });
+
+//EFFECT PAGE 1
+window.addEventListener('mousemove', async (e) => {
+  const offX = e.screenX - window.innerWidth / 2;
+  const offY = e.screenY - window.innerHeight / 2;
+  img.style.transform = `translate(${-offX / 50}px,${-offY / 50}px`;
+  profileBg.style.transform = `translate(${-offX / 35}px,${-offY / 35}px`;
+  hOne.style.transform = `translate(${-offX / 15}px,${-offY / 15}px`;
+  about.style.transform = `translate(${-offX / 35}px,${-offY / 10}px`;
+});
 
 //BODY ON SCROLL
 const body = document.querySelector('body');
@@ -56,7 +172,7 @@ body.style.backgroundSize = `${bodyStyle.backgroundSize}`;
 if (window.scrollY > window.innerHeight) {
   body.style.backgroundSize = `${bodyStyle.backgroundSize}`;
   hero.style.opacity = 0;
-  console.log('hello');
+  // console.log('hello');
 }
 
 const arrBgSize = body.style.backgroundSize.split('p');
@@ -70,42 +186,15 @@ window.addEventListener('scroll', () => {
   if (window.scrollY >= 300 && window.scrollY <= window.innerHeight) {
     const opacity = (window.scrollY - 300) / (window.innerHeight - 300);
     let _minOpacity = opacity * 5;
-    // if(_minOpacity < 0.2){
-    //   _minOpacity = 0
-    // }
     hero.style.opacity = 1 - _minOpacity;
     hero.style.scale = 1 - opacity;
-
-    // console.log(opacity);
-    // console.log(window.innerHeight);
   }
   if (window.scrollY < 300) {
     hero.style.opacity = 1;
   }
 
-  arrowScrollEffect();
+  isArrowScrollEnable && arrowScrollEffect();
 });
-
-function arrowScrollEffect() {
-  if (window.scrollY > window.innerHeight / 2) {
-    arrow.style.rotate = '180deg';
-    arrow.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-    });
-  } else {
-    arrow.style.rotate = '0deg';
-    // arrowLink.setAttribute('href', '#Portfolio');
-    arrow.addEventListener('click', () => {
-      window.scrollTo({
-        top: window.innerHeight,
-        behavior: 'smooth',
-      });
-    });
-  }
-}
 
 // SCROLL FOLLOW
 const object = document.querySelectorAll('.scrl-obj');
@@ -173,7 +262,7 @@ function dragg() {
 
 dragg();
 window.addEventListener('resize', () => {
-  dragg();
+  isArrowScrollEnable && dragg();
 });
 
 // CURSOR CUSTOM DRAG
