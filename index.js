@@ -9,14 +9,10 @@ const imagePortfolio = document.querySelectorAll('.image-box');
 const mouseMoveObject = document.querySelectorAll('.mouse-move');
 const mainElement = document.querySelector('main');
 const contentPortfolio = document.querySelector('.portfolio .content');
+const backgroundImage = document.querySelector('#bg-image');
 
+let isDetailOpen = false;
 let isArrowScrollEnable = true;
-// const body1 = document.querySelector('body');
-
-// window.scrollTo({
-//   top: 0,
-//   behavior: 'smooth',
-// });
 
 const dataPortfolio = {
   Torestoe: {
@@ -27,6 +23,7 @@ const dataPortfolio = {
     type: 'Website',
     techStack: 'HTML / CSS / Javascript',
     role: 'UI / Front-End',
+    action: 'See Demo',
   },
   Moneytory: {
     title: 'Moneytory',
@@ -34,8 +31,9 @@ const dataPortfolio = {
     image: './assets/images/port/Moneytory.jpg',
     link: 'https://github.com/delurd/CatatanKeuanganApps/releases/download/v1.0.0/CatatanKeuangan-v1.0.0.apk',
     type: 'Android App',
-    techStack: 'React Native',
+    techStack: 'React Native / SQLite',
     role: 'Full Stack',
+    action: 'Download App',
   },
   Midpoint: {
     title: 'Midpoint Project',
@@ -45,115 +43,101 @@ const dataPortfolio = {
     type: 'Website',
     techStack: 'HTML / CSS / Javascript',
     role: 'UI / Front-End',
+    action: 'See Demo',
   },
 };
 
-function arrowScrollEffect() {
-  if (window.scrollY > window.innerHeight / 2) {
-    arrow.style.rotate = '180deg';
-    arrow.addEventListener('click', () => {
+function arrowClickEffect() {
+  arrow.parentNode.addEventListener('click', arrowOnClick);
+}
+arrowClickEffect();
+
+function arrowOnClick() {
+  if (isDetailOpen) {
+    const bodyPortfolio = document.querySelector('.body-portfolio');
+    const bodyDetailPortfolio = document.querySelector('#detailPortfolio');
+    bodyDetailPortfolio.style.opacity = 0;
+
+    bodyPortfolio.classList.remove('active');
+
+    setTimeout(() => {
+      body.style.overflowY = 'auto';
+      arrow.style.rotate = '180deg';
+      isDetailOpen = false;
+      const bodyPorto = document.querySelector('#detailPortfolio');
+
+      bodyPorto && bodyPorto.remove();
+      contentPortfolio.style.display = null;
+    }, [300]);
+  } else {
+    if (window.scrollY > window.innerHeight / 2) {
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
       });
-    });
-  } else {
-    arrow.style.rotate = '0deg';
-    // arrowLink.setAttribute('href', '#Portfolio');
-    arrow.addEventListener('click', () => {
+    } else {
       window.scrollTo({
         top: window.innerHeight,
         behavior: 'smooth',
       });
-    });
+    }
   }
-}
-arrowScrollEffect();
-
-function arrowEvent(functionClick) {
-  arrow.addEventListener('click', functionClick);
-  // arrow.addEventListener('click', () => {
-  //   console.log('yolo');
-  // });
-  // if (!isArrowScrollEnable) {
-  //   console.log('hello');
-  //   arrow.removeEventListener('click', () => {
-  //     console.log('yolo');
-  //   });
-
-  //   arrow.removeEventListener('click', functionClick);
-  // }
-}
-
-function arrowRemoveClickEvent(functionClick) {
-  arrow.removeEventListener('click', functionClick);
 }
 
 //DETAIL PORTFOLIO
-// imagePortfolio.forEach((selector) => {
-//   selector.addEventListener('click', () => {
-//     const dataSelect = selector.getAttribute('id');
-//     body.style.overflow = 'hidden';
-//     contentPortfolio.style.display = 'none';
-//     arrow.style.rotate = '90deg';
+imagePortfolio.forEach((selector) => {
+  selector.addEventListener('mouseover', () => {
+    cursorCircle.innerHTML = 'Detail';
+  });
+  selector.addEventListener('mouseout', () => {
+    cursorCircle.innerHTML = 'Drag';
+  });
 
-//     const bodyDetailPortfolio = document.createElement('div');
-//     bodyDetailPortfolio.setAttribute('id', 'detailPortfolio');
-//     bodyDetailPortfolio.innerHTML = `<div class="body-portfolio">
-//     <div class="content-portfolio">
-//       <div class="col-left">
-//         <div class="img-box">
-//           <img src=${dataPortfolio[dataSelect].image}>
-//         </div>
-//         <div class="spec">
-//           <p>${dataPortfolio[dataSelect].type}</p>
-//           <p>${dataPortfolio[dataSelect].techStack}</p>
-//           <p>${dataPortfolio[dataSelect].role}</p>
-//         </div>
-//       </div>
-//       <div class="spacer"></div>
-//       <div class="col-right">
-//         <div>
-//           <h1>${dataPortfolio[dataSelect].title}
-//           </h1>
-//           <br>
-//           <br>
-//           <p>${dataPortfolio[dataSelect].desc}</p>
-//         </div>
-//         <p>
-//           <a href=${dataPortfolio[dataSelect].link} target="_blank">See demo <span class="arrow">➔</span></a>
-//         </p>
-//       </div>
-//     </div>
-//   </div>`;
-//     mainElement.append(bodyDetailPortfolio);
+  selector.addEventListener('click', () => {
+    const dataSelect = selector.getAttribute('id');
 
-//     const bodyPorto = document.querySelector('#detailPortfolio');
-//     function onClickArrow() {
-//       contentPortfolio.style.display = 'flex';
-//       console.log('contentPortfolio.style.display');
-//       // dragg();
-//       bodyPorto.remove();
-//       arrow.style.rotate = '180deg';
-//       // console.log(contentPortfolio);
-//       window.scrollTo({
-//         top: window.innerHeight,
-//         behavior: 'smooth',
-//       });
-//       arrowEvent(() => {
-//         window.scrollTo({
-//           top: 0,
-//           behavior: 'smooth',
-//         });
-//       });
-//       isArrowScrollEnable = true;
-//       body.style.overflow = 'auto';
-//     }
-//     arrowEvent(onClickArrow);
+    body.style.overflowY = 'hidden';
+    // contentPortfolio.style.display = 'none';
+    arrow.style.rotate = '90deg';
+    isDetailOpen = true;
 
-//     isArrowScrollEnable = false;
-//   });
-// });
+    const bodyDetailPortfolio = document.createElement('div');
+    bodyDetailPortfolio.setAttribute('id', 'detailPortfolio');
+    bodyDetailPortfolio.innerHTML = `<div class="body-portfolio">
+      <div class="content-portfolio">
+        <div class="col-left">
+          <div class="img-box">
+            <img src=${dataPortfolio[dataSelect].image}>
+          </div>
+          <div class="spec">
+            <p>${dataPortfolio[dataSelect].type}</p>
+            <p>${dataPortfolio[dataSelect].techStack}</p>
+            <p>${dataPortfolio[dataSelect].role}</p>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="col-right">
+          <div>
+            <h1>${dataPortfolio[dataSelect].title}
+            </h1>
+          
+            <p>${dataPortfolio[dataSelect].desc}</p>
+          </div>
+          <p>
+            <a href=${dataPortfolio[dataSelect].link} target="_blank">${dataPortfolio[dataSelect].action} <span class="arrow">➔</span></a>
+          </p>
+        </div>
+      </div>
+    </div>`;
+    mainElement.append(bodyDetailPortfolio);
+    const bodyPortfolio = document.querySelector('.body-portfolio');
+
+    setTimeout(() => {
+      bodyDetailPortfolio.style.opacity = 1;
+      bodyPortfolio.classList.add('active');
+    }, 100);
+  });
+});
 
 //EFFECT PAGE 1
 window.addEventListener('mousemove', async (e) => {
@@ -178,22 +162,35 @@ if (window.scrollY > window.innerHeight) {
 const arrBgSize = body.style.backgroundSize.split('p');
 
 window.addEventListener('scroll', () => {
-  const scrollValue = window.scrollY;
-  let bgSize = parseFloat(arrBgSize[0]) - scrollValue * 2;
+  const scrollValueY = window.scrollY;
 
+  //BG On Scroll
+  let bgSize = parseFloat(arrBgSize[0]) - scrollValueY * 2;
   body.style.backgroundSize = `${bgSize < 0 ? 0 : bgSize}px`;
 
-  if (window.scrollY >= 300 && window.scrollY <= window.innerHeight) {
-    const opacity = (window.scrollY - 300) / (window.innerHeight - 300);
+  let scaleSize = (scrollValueY * 2 - 0) / (window.innerHeight - 0);
+  if (scaleSize >= 0 && scaleSize <= 1) {
+    backgroundImage.style.scale = 1 - scaleSize;
+    backgroundImage.style.opacity = 0.4 - scaleSize/2;
+  }
+
+  //Hero Opacity & Scale
+  if (scrollValueY >= 300 && scrollValueY <= window.innerHeight) {
+    const opacity = (scrollValueY - 300) / (window.innerHeight - 300);
     let _minOpacity = opacity * 5;
     hero.style.opacity = 1 - _minOpacity;
     hero.style.scale = 1 - opacity;
   }
-  if (window.scrollY < 300) {
+  if (scrollValueY < 300) {
     hero.style.opacity = 1;
   }
 
-  isArrowScrollEnable && arrowScrollEffect();
+  //Arrow Rotation
+  !isDetailOpen
+    ? scrollValueY > window.innerHeight / 2
+      ? (arrow.style.rotate = '180deg')
+      : (arrow.style.rotate = '0deg')
+    : null;
 });
 
 // SCROLL FOLLOW
@@ -262,7 +259,7 @@ function dragg() {
 
 dragg();
 window.addEventListener('resize', () => {
-  isArrowScrollEnable && dragg();
+  dragg();
 });
 
 // CURSOR CUSTOM DRAG

@@ -40,13 +40,16 @@ body {
     // width: 100px;
     padding: 40px;
     // background-color: #e4e4e4;
-    z-index: 2000;
+    z-index: 2010;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
 
-    .arrow {}
+    .arrow {
+        transition: 0.3s;
+        cursor: pointer;
+    }
 
     .arrow img {
         height: auto;
@@ -54,11 +57,11 @@ body {
         padding-bottom: 80px;
         transition: 0.3s;
         padding-bottom: 0px;
-        cursor: pointer;
+        // cursor: pointer;
     }
 
-    .arrow img:hover {
-        margin-bottom: 10px;
+    .arrow:hover {
+        padding-bottom: 10px;
     }
 }
 
@@ -206,7 +209,7 @@ body {
             position: relative;
             height: 300px;
             width: 500px;
-            background-color: #e4e4e4;
+            // background-color: #e4e4e4;
             // overflow: hidden;
 
             .image-box {
@@ -215,6 +218,7 @@ body {
                 width: 100%;
                 transition: 0.3s;
                 cursor: pointer;
+
             }
 
             img {
@@ -261,6 +265,7 @@ body {
                 left: 450px;
                 right: -100px;
                 // background-color: $accentColor;
+                // mix-blend-mode : difference;
             }
 
             .demo-link {
@@ -328,6 +333,12 @@ body {
     padding-top: 30px;
     padding-bottom: 30px;
     padding-right: 30px;
+
+    div {
+        width: 70%;
+        height: 1px;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
 }
 
 .cursor-circle {
@@ -364,45 +375,63 @@ body {
     padding-top: 8%;
     padding-right: 10%;
     padding-left: 10%;
+    z-index: 2001;
+    opacity: 0;
+    transition: 0.5s;
+
+
 
     .body-portfolio {
         background-color: #F4F4F4;
-        width: 100%;
+        // width: 100%;
+        width: 80%;
         padding: 88px;
         padding-bottom: 20px;
         overflow: auto;
-    }
+        position: absolute;
+        transition: 0.3s;
+        // height: 100%;
+        height: 80%;
+        bottom: -80%;
 
-    .content-portfolio {
-        display: flex;
 
-        .col-left {
-            width: 65%;
-            // height: 600px;
-            // height: 50vh;
-            // background-color: antiquewhite;
-            overflow: hidden;
 
-            .img-box {
-                width: 100%;
-                height: auto;
-                // background-color: #30C296;
-                overflow: hidden;
-                margin-bottom: 20px;
+        .content-portfolio {
+            display: flex;
 
-                img {
-                    width: 100%;
-                    height: 50vh;
-                    object-fit: cover;
-                }
+            p {
+                line-height: 30px;
+                font-size: 18px;
             }
 
-            .spec {
-                display: flex;
-                justify-content: space-between;
+            .col-left {
+                width: 65%;
+                // height: 600px;
+                // height: 50vh;
+                // background-color: antiquewhite;
+                overflow: hidden;
 
-                p {
-                    // font-size: 14px;
+                .img-box {
+                    width: 100%;
+                    height: auto;
+                    // background-color: #30C296;
+                    overflow: hidden;
+                    margin-bottom: 20px;
+
+                    img {
+                        width: 100%;
+                        height: 50vh;
+                        object-fit: cover;
+                    }
+                }
+
+                .spec {
+                    display: flex;
+                    justify-content: space-between;
+
+                    p {
+                        // font-size: 14px;
+                    }
                 }
             }
         }
@@ -416,7 +445,7 @@ body {
 
             h1 {
                 font-size: 36px;
-                margin: 0;
+                margin-bottom: 70px;
             }
 
             a {
@@ -442,6 +471,12 @@ body {
             width: 10%;
         }
     }
+
+    .active {
+        bottom: 0;
+        transition: 0.5s;
+
+    }
 }
 
 
@@ -459,6 +494,52 @@ body {
         // scale: 0.3;
     }
 
+    .side-bar {
+        padding: 20px;
+
+    }
+
+    #detailPortfolio {
+        padding-top: 0%;
+        padding-right: 0%;
+        padding-left: 0%;
+
+        .body-portfolio {
+            width: 100%;
+            height: 100%;
+            bottom: -80%;
+
+            .content-portfolio {
+                padding-bottom: 100px;
+
+                .col-left {
+                    width: 100%;
+
+                    .img-box {
+                        height: 200px;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                }
+
+                .col-right {
+
+                    h1 {
+                        margin-bottom: 40px;
+                    }
+                }
+            }
+        }
+
+        .active {
+            bottom: 0;
+            transition: 0.5s;
+        }
+    }
 
 }
 
@@ -468,25 +549,38 @@ body {
         .body-portfolio {
             padding: 40px;
             padding-bottom: 0px;
-            // background-color: #ECC45D;
 
         }
 
         .content-portfolio {
             flex-direction: column;
             width: 100%;
-            // background-color: #C4C4C4;
 
             .col-left {
                 width: 100%;
-                // background-color: #56A4D2;
+                margin-bottom: 20px;
 
                 .spec {
-                    flex-direction: column;
+                    // flex-direction: column;
+                    flex-wrap: wrap;
                     margin-bottom: 20px;
+                    gap: 15px;
 
                     p {
-                        margin: 5px;
+                        margin: 0px;
+                        padding-left: 5px;
+                    }
+
+                    p::before {
+                        content: "";
+                        width: 5px;
+                        height: 10px;
+                        background-color: #30C296;
+                        display: inline-block;
+                        transform: skewX(-35deg);
+                        margin-right: 2px;
+                        margin-bottom: 8px;
+                        margin-left: 0px;
                     }
                 }
             }
@@ -495,6 +589,22 @@ body {
                 width: 100%;
                 // background-color: #56A4D2;
             }
+        }
+    }
+
+
+    .cc {
+        display: flex;
+        justify-content: flex-end;
+        // align-items: center;
+        // padding-top: 30px;
+        // padding-bottom: 30px;
+        // padding-right: 30px;
+    
+        div {
+            width: 60%;
+            // height: 1px;
+            // background-color: rgba(0, 0, 0, 0.2);
         }
     }
 
