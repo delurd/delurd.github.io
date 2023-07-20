@@ -29,7 +29,7 @@ const dataPortfolio = {
     title: 'Moneytory',
     desc: 'An application that is used to record financial income and expenses, easier and a substitute for a big book',
     image: './assets/images/port/Moneytory.jpg',
-    link: 'https://github.com/delurd/CatatanKeuanganApps/releases/download/v1.0.0/CatatanKeuangan-v1.0.0.apk',
+    link: 'https://github.com/delurd/CatatanKeuanganApps/releases/download/v1.0.1/CatatanKeuangan-v1.0.1.apk',
     type: 'Android App',
     techStack: 'React Native / SQLite',
     role: 'Full Stack',
