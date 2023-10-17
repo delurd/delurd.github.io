@@ -6,6 +6,7 @@ const about = document.querySelector('.hero .about');
 const arrow = document.querySelector('.side-bar .arrow img');
 const arrowLink = document.querySelector('.side-bar .arrow');
 const imagePortfolio = document.querySelectorAll('.image-box');
+const portfolioLink = document.querySelectorAll('.image-box .demo-link');
 const mouseMoveObject = document.querySelectorAll('.mouse-move');
 const mainElement = document.querySelector('main');
 const contentPortfolio = document.querySelector('.portfolio .content');
@@ -17,7 +18,7 @@ let isArrowScrollEnable = true;
 const dataPortfolio = {
   Torestoe: {
     title: 'Torestoe - Restaurant Catalogue',
-    desc: 'A restaurant catalogue website that implement PWA',
+    desc: 'A restaurant catalogue website that implement Progressive Web Apps. This project is a submission for completing class of Front-End Web Developer Expert in Dicoding Academy',
     image: './assets/images/port/Torestoe.jpg',
     link: 'https://torestoe.netlify.app/',
     type: 'Website',
@@ -27,13 +28,23 @@ const dataPortfolio = {
   },
   Moneytory: {
     title: 'Moneytory',
-    desc: 'An application that is used to record financial income and expenses, easier and a substitute for a big book',
+    desc: 'An application that is used to record financial income and expenses, easier and a substitute for a big book, organize by category',
     image: './assets/images/port/Moneytory.jpg',
     link: 'https://play.google.com/store/apps/details?id=com.flurs.catatankeuangan',
     type: 'Android App',
     techStack: 'React Native / SQLite',
     role: 'Full Stack',
     action: 'Download App',
+  },
+  Mantri: {
+    title: 'Mantri',
+    desc: 'An website to inform about open or close of health practice, using arduino door sensor and combining with practice schedule and prayer time to get result of status practice is open or close',
+    image: './assets/images/port/Mantri.jpg',
+    link: 'https://mantri-mejeruk.my.id',
+    type: 'Web App / IOT',
+    techStack: 'Next js / Arduino',
+    role: 'Full Stack',
+    action: 'See Website',
   },
   Midpoint: {
     title: 'Midpoint Project',
@@ -84,6 +95,11 @@ function arrowOnClick() {
   }
 }
 
+portfolioLink.forEach((element) => {
+  element.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+});
 //DETAIL PORTFOLIO
 imagePortfolio.forEach((selector) => {
   selector.addEventListener('mouseover', () => {
@@ -134,7 +150,10 @@ imagePortfolio.forEach((selector) => {
 
     setTimeout(() => {
       bodyDetailPortfolio.style.opacity = 1;
-      bodyPortfolio.classList.add('active');
+      setTimeout(() => {
+        bodyPortfolio.classList.add('active');
+      }, 200);
+      // bodyPortfolio.classList.add('active');
     }, 100);
   });
 });
@@ -171,7 +190,7 @@ window.addEventListener('scroll', () => {
   let scaleSize = (scrollValueY * 2 - 0) / (window.innerHeight - 0);
   if (scaleSize >= 0 && scaleSize <= 1) {
     backgroundImage.style.scale = 1 - scaleSize;
-    backgroundImage.style.opacity = 0.4 - scaleSize/2;
+    backgroundImage.style.opacity = 0.4 - scaleSize / 2;
   }
 
   //Hero Opacity & Scale
@@ -233,11 +252,13 @@ const sliderIndicatorPortfolio = document.querySelector(
 );
 function indicatorPortfolio() {
   const translateX = conntentStyle.transform.split(',')[4];
+  // const maxWidth = slideBox.scrollWidth / 2;
+  const maxWidth = 2900;
   let olahX = -translateX;
   olahX < 0 && (olahX = 0);
-  olahX > 1900 && (olahX = 1900);
+  olahX > maxWidth && (olahX = maxWidth);
 
-  let normalizeX = (olahX - 0) / (1900 - 0);
+  let normalizeX = (olahX - 0) / (maxWidth - 0);
 
   sliderIndicatorPortfolio.style.width = `${normalizeX * 100 + 5}%`;
 }
