@@ -11,6 +11,7 @@ const mouseMoveObject = document.querySelectorAll('.mouse-move');
 const mainElement = document.querySelector('main');
 const contentPortfolio = document.querySelector('.portfolio .content');
 const backgroundImage = document.querySelector('#bg-image');
+let isThemeDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 let isDetailOpen = false;
 let isArrowScrollEnable = true;
@@ -67,6 +68,12 @@ const dataPortfolio = {
     action: 'See Demo',
   },
 };
+
+window
+  .matchMedia('(prefers-color-scheme: dark)')
+  .addEventListener('change', (event) => {
+    isThemeDark = event.matches;
+  });
 
 function arrowClickEffect() {
   arrow.parentNode.addEventListener('click', arrowOnClick);
@@ -192,6 +199,7 @@ const arrBgSize = body.style.backgroundSize.split('p');
 
 window.addEventListener('scroll', () => {
   const scrollValueY = window.scrollY;
+  const defaultOpacity = isThemeDark ? 0.1 : 0.4;
 
   //BG On Scroll
   let bgSize = parseFloat(arrBgSize[0]) - scrollValueY * 2;
@@ -200,7 +208,7 @@ window.addEventListener('scroll', () => {
   let scaleSize = (scrollValueY * 2 - 0) / (window.innerHeight - 0);
   if (scaleSize >= 0 && scaleSize <= 1) {
     backgroundImage.style.scale = 1 - scaleSize;
-    backgroundImage.style.opacity = 0.4 - scaleSize / 2;
+    backgroundImage.style.opacity = defaultOpacity - scaleSize / 2;
   }
 
   //Hero Opacity & Scale

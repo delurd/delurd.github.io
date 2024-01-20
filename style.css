@@ -1,3 +1,15 @@
+
+:root{
+    --bg-image-opacity : 0.4
+}
+
+@media (prefers-color-scheme: dark) {
+   :root{
+    --bg-image-opacity : 0.1
+   }
+}
+
+
 * {
     box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -29,7 +41,7 @@ body {
     bottom: 0;
     left: 0;
     z-index: 0;
-    opacity: 0.4;
+    opacity: var(--bg-image-opacity);
     /* background-image: url('assets/images/LogoFLursBg.png'); */
     background-repeat: no-repeat;
     background-position: center;
