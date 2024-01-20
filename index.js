@@ -16,6 +16,16 @@ let isDetailOpen = false;
 let isArrowScrollEnable = true;
 
 const dataPortfolio = {
+  Storein: {
+    title: 'Storein',
+    desc: `A store website to sell or buy various products. This is an exploration project build with Next js, Frammer Motion, Next-auth, React Query, and Prisma. The UI design by buildwithangga.com`,
+    image: './assets/images/port/Storein.jpg',
+    link: 'https://storein.netlify.app/',
+    type: 'Website',
+    techStack: 'Next js / PostgreSQL',
+    role: 'Full Stack',
+    action: 'See Demo',
+  },
   Torestoe: {
     title: 'Torestoe - Restaurant Catalogue',
     desc: 'A restaurant catalogue website that implement Progressive Web Apps. This project is a submission for completing class of Front-End Web Developer Expert in Dicoding Academy',
@@ -33,7 +43,7 @@ const dataPortfolio = {
     link: 'https://play.google.com/store/apps/details?id=com.flurs.catatankeuangan',
     type: 'Android App',
     techStack: 'React Native / SQLite',
-    role: 'Full Stack',
+    role: 'UI / Full Stack',
     action: 'Download App',
   },
   Mantri: {
@@ -43,7 +53,7 @@ const dataPortfolio = {
     link: 'https://mantri-mejeruk.my.id',
     type: 'Web App / IOT',
     techStack: 'Next js / Arduino',
-    role: 'Full Stack',
+    role: 'UI / Full Stack',
     action: 'See Website',
   },
   Midpoint: {
@@ -253,7 +263,8 @@ const sliderIndicatorPortfolio = document.querySelector(
 function indicatorPortfolio() {
   const translateX = conntentStyle.transform.split(',')[4];
   // const maxWidth = slideBox.scrollWidth / 2;
-  const maxWidth = 2900;
+  const totalContent = 5;
+  const maxWidth = 720 * totalContent;
   let olahX = -translateX;
   olahX < 0 && (olahX = 0);
   olahX > maxWidth && (olahX = maxWidth);
