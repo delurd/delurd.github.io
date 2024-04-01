@@ -434,6 +434,7 @@ body {
   transition: 0.3s;
   height: 80%;
   bottom: -80%;
+  opacity: 0;
 }
 
 #detailPortfolio .body-portfolio .content-portfolio {
@@ -520,6 +521,7 @@ body {
   bottom: 0;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  opacity: 1;
 }
 
 @media screen and (max-width: 600px) {
